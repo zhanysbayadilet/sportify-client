@@ -1,0 +1,113 @@
+<div class="w-full">
+  <div class="overflow-x-auto">
+    <section class="flex gap-2 my-2">
+      <button mat-button (click)="openCreateDialog()" id="create-button"
+              class="card-border shadow-animation2 text-white">Create</button>
+      <mat-form-field class="w-full" color="accent">
+        <mat-label>Search...</mat-label>
+        <input matInput type="text" [(ngModel)]="searchText">
+        <button matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </section>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z w-full card-border overflow-x-scroll overflow-x-visible">
+      <!-- Position Column -->
+      <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index;"> {{i + 1}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+      <!-- name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <!-- name Column -->
+      <ng-container matColumnDef="subtitle">
+        <mat-header-cell *matHeaderCellDef> Subtitle </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.subtitle}} </mat-cell>
+      </ng-container>
+
+      <!-- description Column -->
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+      </ng-container>
+
+      <!-- startDate Column -->
+      <ng-container matColumnDef="startDate">
+        <mat-header-cell *matHeaderCellDef> Start date </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.startDate | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}</mat-cell>
+      </ng-container>
+
+      <!-- endDate Column -->
+      <ng-container matColumnDef="endDate">
+        <mat-header-cell *matHeaderCellDef> End date </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.endDate | date:'dd.MM.yyyy HH:mm '  : 'UTC' + 6}}</mat-cell>
+      </ng-container>
+
+      <!-- prizeFund Column -->
+      <ng-container matColumnDef="prizeFund">
+        <mat-header-cell *matHeaderCellDef> Prize fund </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.prizeFund}}</mat-cell>
+      </ng-container>
+
+      <!-- category Column -->
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.category.name}}</mat-cell>
+      </ng-container>
+
+      <!-- organizer Column -->
+      <ng-container matColumnDef="organizer">
+        <mat-header-cell *matHeaderCellDef> Organizer </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.organizer.username}}</mat-cell>
+      </ng-container>
+
+      <!-- status Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.status}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-button (click)="openEditDialog(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-button (click)="delete(element.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <ng-template matNoDataRow>
+        <td class="flex justify-center pt-3 pb-1" [attr.colspan]="displayedColumns.length">
+          No data available!
+        </td>
+      </ng-template>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator
+                   class="text-sm card-border mt-2 bg-[#FFDF7E]"
+                   (page)="handlePageEvent($event)"
+                   [length]="length"
+                   [pageSize]="pageSize"
+                   [disabled]="disabled"
+                   [showFirstLastButtons]="true"
+                   [hidePageSize]="true"
+                   [pageIndex]="pageIndex"
+                   aria-label="Select page">
+    </mat-paginator>
+  </div>
+</div>

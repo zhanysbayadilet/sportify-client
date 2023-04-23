@@ -1,0 +1,23 @@
+::ng-deep div#mat-menu-panel-0 {
+  border: 1.5px solid;
+  border-radius: 10px;
+}
+
+.links a:hover{
+  cursor: pointer;
+  border-bottom: 2px solid #B0B0B0 !important;
+  @apply transition-colors duration-300 transform
+}
+
+.links .activeLink {
+  border-bottom: 2px solid #000 !important;
+  @apply transition-colors duration-300 transform text-black
+}
+
+::ng-deep .mat-mdc-menu-content{
+  padding: 5px !important;
+}
+
+::ng-deep .mat-mdc-menu-item.mdc-list-item {
+  border-radius: 8px;
+}

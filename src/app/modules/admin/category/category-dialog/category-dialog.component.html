@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content class="overflow-y-scroll">
+  <form [formGroup]="formGroup2" #signInNgForm="ngForm">
+    <mat-form-field class="w-full mb-3" color="accent">
+      <mat-label>Name</mat-label>
+      <input [ngModel]="category.enName" [formControlName]="'name'" id="name" matInput>
+      <mat-error *ngIf="formGroup2.get('name')?.hasError('required')">
+        {{ "Обязательно для заполнения" }}
+      </mat-error>
+      <button *ngIf="formGroup2.get('name')" matSuffix mat-icon-button aria-label="Clear"
+              (click)="formGroup2.get('name')?.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field class="w-full mb-3" color="accent">
+      <mat-label>Image</mat-label>
+      <input [ngModel]="category.img" [formControlName]="'img'" id="img" matInput>
+      <mat-error *ngIf="formGroup2.get('img')?.hasError('required')">
+        {{ "Обязательно для заполнения" }}
+      </mat-error>
+      <button *ngIf="formGroup2.get('img')" matSuffix mat-icon-button aria-label="Clear"
+              (click)="formGroup2.get('img')?.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field class="w-full mb-3" color="accent">
+      <mat-label>Description</mat-label>
+      <input [ngModel]="category.description" [formControlName]="'description'" id="description" matInput>
+      <mat-error *ngIf="formGroup2.get('description')?.hasError('required')">
+        {{ "Обязательно для заполнения" }}
+      </mat-error>
+      <button *ngIf="formGroup2.get('description')" matSuffix mat-icon-button aria-label="Clear"
+              (click)="formGroup2.get('description')?.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{'Cancel' | translate}}</button>
+  <button mat-button (click)="saveCategory()">{{data.action | translate}}</button>
+</div>

@@ -1,0 +1,10 @@
+.wrapper {
+  position: relative;
+  min-height: 100vh; /* установить высоту на всю высоту экрана */
+}
+
+app-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

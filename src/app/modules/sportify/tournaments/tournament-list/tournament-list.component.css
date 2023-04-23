@@ -1,0 +1,52 @@
+.card-border{
+  border: 1.5px solid #000;
+  @apply rounded-xl mb-4;
+}
+
+.shadow-animation {
+  @apply shadow-none;
+}
+.shadow-animation {
+  @apply hover:-translate-y-[6px] hover:-translate-x-[6px] duration-300 hover:shadow-[6px_6px_black];
+}
+
+::ng-deep .mdc-text-field--filled {
+  @apply border-b-0;
+}
+
+::ng-deep .mat-select-panel {
+  @apply bg-white border-[1.5px] border-black rounded-xl -mb-2;
+}
+
+::ng-deep .mat-datepicker-content {
+  margin-top: 10px;
+  border: 1.5px solid;
+  border-radius: 20px !important;
+  padding-bottom: 10px;
+}
+
+::ng-deep .mdc-menu-surface--open {
+  margin-top: 10px !important;
+  border: 1.5px solid !important;
+  border-radius: 20px !important;
+}
+
+::ng-deep .mdc-text-field--filled {
+  margin-bottom: -22px;
+  @apply border-b-0;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  @apply bg-[#69C6AC] text-white mr-1 rounded-xl hover:bg-black duration-150;
+}
+
+.mat-mdc-button:not(:disabled) {
+  color: var(--mdc-text-button-label-text-color, inherit);
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  border: 1.5px solid !important;
+  border-radius: 10px !important;
+  margin-bottom: -10px;
+}
+

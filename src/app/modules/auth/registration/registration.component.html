@@ -1,0 +1,69 @@
+<section class="grid place-content-center h-full">
+  <div class="border-[1.5px] border-black rounded-full absolute top-5 left-5 shadow-xl">
+    <button type="button" mat-icon-button routerLink="">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+  </div>
+  <div class="flex min-h-full items-center justify-center py-32 px-4 -mt-10">
+    <div class="w-full max-w-md space-y-8">
+      <div>
+        <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign up</h2>
+      </div>
+      <form [formGroup]="signUpForm">
+        <mat-form-field class="w-full mb-3" color="accent">
+          <mat-label>Name</mat-label>
+          <input matInput id="name" [formControlName]="'name'">
+          <mat-error *ngIf="signUpForm.get('name')?.hasError('required')">
+            {{ "Обязательно для заполнения" }}
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('name')?.hasError('name')">
+            {{ "Введите имя!" }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full mb-3" color="accent">
+          <mat-label>Surname</mat-label>
+          <input matInput id="surname" [formControlName]="'surname'">
+          <mat-error *ngIf="signUpForm.get('surname')?.hasError('required')">
+            {{ "Обязательно для заполнения" }}
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('surname')?.hasError('surname')">
+            {{ "Введите Фамилию!" }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full mb-3" color="accent">
+          <mat-label>Email</mat-label>
+          <input matInput id="email" [formControlName]="'email'">
+          <mat-error *ngIf="signUpForm.get('surname')?.hasError('required')">
+            {{ "Обязательно для заполнения" }}
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('surname')?.hasError('surname')">
+            {{ "Введите Фамилию!" }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full mb-3" color="accent">
+          <mat-label>Password</mat-label>
+          <input [type]="hide ? 'password' : 'text'" [formControlName]="'password'" id="password" matInput>
+          <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
+            {{ "Обязательно для заполнения" }}
+          </mat-error>
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <a href="#/login" class="text-sm font-medium hover:text-[#69C6AC]">Do you have an account?</a>
+        <button type="submit" mat-button id="create-button"
+                class="card-border shadow-animation2 text-white" [disabled]="signUpForm.invalid"
+                (click)="signUp()">
+          <span *ngIf="signUpForm.enabled">
+                        Sign up
+                    </span>
+          <mat-progress-spinner
+            *ngIf="signUpForm.disabled"
+            [diameter]="24"
+            [mode]="'indeterminate'"></mat-progress-spinner>
+        </button>
+
+      </form>
+    </div>
+  </div>
+</section>

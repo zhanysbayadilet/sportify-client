@@ -1,0 +1,9 @@
+.activeLink {
+  background-color: black;
+  color: white !important;
+  @apply transition-colors duration-300 transform
+}
+
+.item-button {
+  border-radius: 10px;
+}

@@ -1,0 +1,109 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content class="overflow-y-scroll">
+  <form [formGroup]="formGroup" #signInNgForm="ngForm">
+    <mat-form-field class="w-full mb-3" color="accent">
+      <mat-label>Name</mat-label>
+      <input [ngModel]="tournament.name" [formControlName]="'name'" id="name" matInput>
+      <mat-error *ngIf="formGroup.get('name')?.hasError('required')">
+        {{ "Обязательно для заполнения" }}
+      </mat-error>
+      <mat-error *ngIf="formGroup.get('name')?.hasError('maxlength')">
+        {{ "Максимальная длина 30 символов" }}
+      </mat-error>
+      <button *ngIf="formGroup.get('name')" matSuffix mat-icon-button aria-label="Clear"
+              (click)="formGroup.get('name')?.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field class="w-full mb-3" color="accent">
+      <mat-label>Subtitle</mat-label>
+      <textarea matInput [ngModel]="tournament.subtitle" [formControlName]="'subtitle'"
+                id="subtitle" style="height: 50px"></textarea>
+      <mat-error *ngIf="formGroup.get('subtitle')?.hasError('required')">
+        {{ "Обязательно для заполнения" }}
+      </mat-error>
+      <mat-error *ngIf="formGroup.get('subtitle')?.hasError('minlength')">
+        {{ "Минимальная длина 10 символов" }}
+      </mat-error>
+      <mat-error *ngIf="formGroup.get('subtitle')?.hasError('maxlength')">
+        {{ "Максимальная длина 30 символов" }}
+      </mat-error>
+      <button *ngIf="formGroup.get('subtitle')" matSuffix mat-icon-button aria-label="Clear"
+              (click)="formGroup.get('subtitle')?.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="flex flex-row gap-2">
+      <mat-form-field color="accent" class="mb-3 w-full">
+        <mat-label>Category</mat-label>
+        <mat-select [ngModel]="tournament.category" [formControlName]="'category'">
+          <mat-option *ngFor="let category of categories" [value]="category">{{category.enName}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.get('category')?.hasError('required')">
+          {{ "Обязательно для заполнения" }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full mb-3" color="accent">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate [ngModel]="tournament.startDate" [formControlName]="'startDate'" placeholder="Start date">
+          <input matEndDate [ngModel]="tournament.endDate" [formControlName]="'endDate'" placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        <mat-error *ngIf="formGroup.get('startDate')?.hasError('required')">
+          {{ "Обязательно для заполнения" }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-row gap-2">
+      <mat-form-field class="w-full mb-3" color="accent">
+        <mat-label>City</mat-label>
+        <mat-select [ngModel]="tournament.city" [formControlName]="'city'">
+          <mat-option *ngFor="let city of cityList" [value]="city">{{city.enName}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.get('city')?.hasError('required')">
+          {{ "Обязательно для заполнения" }}
+        </mat-error>
+        <button *ngIf="formGroup.get('city')" matSuffix mat-icon-button aria-label="Clear"
+                (click)="formGroup.get('city')?.setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field class="w-full mb-3" color="accent">
+        <mat-label>Prize fund</mat-label>
+        <input [ngModel]="tournament.prizeFund" [formControlName]="'prizeFund'" id="prizeFund" matInput>
+        <mat-error *ngIf="formGroup.get('prizeFund')?.hasError('required')">
+          {{ "Обязательно для заполнения" }}
+        </mat-error>
+        <button *ngIf="formGroup.get('prizeFund')" matSuffix mat-icon-button aria-label="Clear"
+                (click)="formGroup.get('prizeFund')?.setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <mat-form-field class="w-full mb-3" color="accent">
+      <mat-label>Address</mat-label>
+      <input [disabled]="true" [ngModel]="tournament.location" [formControlName]="'location'" id="location" matInput>
+      <mat-error *ngIf="formGroup.get('location')?.hasError('required')">
+        {{ "Обязательно для заполнения" }}
+      </mat-error>
+      <button *ngIf="formGroup.get('location')" matSuffix mat-icon-button aria-label="Clear"
+              (click)="formGroup.get('location')?.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-label>
+      <span class="mb-2">Description</span>
+    </mat-label>
+    <div class="card-border">
+      <angular-editor [ngModel]="tournament.description" id="description"
+                      [formControlName]="'description'" [config]="config">
+      </angular-editor>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{'Cancel' | translate}}</button>
+  <button mat-button (click)="saveTournament()">{{data.action | translate}}</button>
+</div>

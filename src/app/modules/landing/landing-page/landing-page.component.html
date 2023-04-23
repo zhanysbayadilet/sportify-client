@@ -1,0 +1,210 @@
+<section class="pt-36 pb-44 header container">
+  <div class="relative">
+    <div class="max-w-3xl">
+      <div>
+        <div class="flex relative mt-[70px]">
+          <div class="z-10">
+            <h1 class="text-7xl font-clashDisplayMedium text-start">{{'Start realizing yourself' | translate}}
+              <span class="relative whitespace-nowrap">
+                <svg aria-hidden="true" viewBox="0 0 418 42" class="absolute top-2/3 left-0 h-[0.58em] w-full fill-[#69C6AC]" preserveAspectRatio="none">
+                  <path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z"></path>
+                </svg>
+                <span class="relative">{{'right now.' | translate}}</span>
+              </span>
+            </h1>
+            <div class="mt-8 flex">
+              <button matRipple (click)="scrollOnClick()" class="green-button shadow-animation">Get start!</button>
+              <img src="assets/images/Sparkle.svg" alt="image1" class="lines -ml-6 -mt-24">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="relative mb-32 pt-10 header container" #myElement>
+  <div>
+    <header class="text-start">
+      <img src="assets/images/Look.svg" alt="image1" class="mb-4">
+      <h1 class="text-5xl font-clashDisplayBold">
+        {{'Categories' | translate | uppercase}}
+      </h1>
+      <p class="mt-2 font-clashDisplayRegular text-zinc-600">
+        I’ve worked on tons of little projects over the years.
+      </p>
+    </header>
+    <div class="grid sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-3 gap-6 mt-6">
+      <div class="shadow-animation p-4 border-[1.5px] border-black rounded-xl" matRipple
+           *ngFor="let category of categories | slice:0:6;">
+        <a routerLink="../tournaments" [queryParams]="{category: category.enName}">
+          <div class="flex justify-items-center justify-between items-center">
+            <div>
+              <span class="relative z-10 font-clashDisplayMedium text-2xl">{{category.enName | uppercase}}</span>
+              <p class="relative z-10 mt-2 text-sm font-clashDisplayRegular text-zinc-600">
+                {{category.description}}
+              </p>
+            </div>
+
+            <div class="items-end">
+              <div class="z-10 flex h-14 w-14 items-center justify-center rounded-full border-[1.5px] border-black">
+                <img alt="" src="{{category.img}}" width="34" height="34" decoding="async"
+                     data-nimg="1" class="h-8 w-8" loading="lazy" style="color: transparent;">
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="mt-10 flex justify-center">
+      <a matRipple [routerLink]="'/categories'" class="black-button-animation bg-[#000] text-[#fff] font-clashDisplayBold rounded-full px-4 py-2.5">
+        {{'More' | translate}}
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="container mb-32">
+  <div class="grid grid-cols-12 px-20 py-12 border-black border-[1.5px] rounded-xl shadow-animation">
+    <div class="col-span-8">
+      <div>
+        <h1 class="text-4xl font-clashDisplayBold">Want to work together?</h1>
+        <p class="text-xl font-clashDisplayRegular">Feel free to reach out for collaborations or just a friendly hello example@gmail.com</p>
+      </div>
+      <div class="mt-20 flex items-center">
+        <div matRipple class="mr-20 cursor-pointer black-button-animation bg-[#000] text-[#fff] font-clashDisplayBold rounded-full px-4 py-2.5">
+          <a>
+            {{'Contact me' | translate}}
+          </a>
+        </div>
+        <div class="flex flex-row gap-3">
+          <div matRipple class="z-10 flex h-14 w-14 items-center justify-center rounded-full border-[1.5px] border-black">
+            A
+          </div>
+          <div matRipple class="z-10 flex h-14 w-14 items-center justify-center rounded-full border-[1.5px] border-black">
+            B
+          </div>
+          <div matRipple class="z-10 flex h-14 w-14 items-center justify-center rounded-full border-[1.5px] border-black">
+            C
+          </div>
+          <div matRipple class="z-10 flex h-14 w-14 items-center justify-center rounded-full border-[1.5px] border-black">
+            D
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-4">
+      <div class="-mb-[49px] overflow-hidden">
+        <img src="/assets/images/man_with_laptop.svg" alt="img">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mb-32 header container">
+  <div>
+    <header class="text-start">
+      <img src="assets/images/Fire.svg" alt="image1" class="mb-4">
+      <h1 class="text-5xl font-clashDisplayBold tracking-tight text-black">
+        {{'Recommendations' | translate | uppercase}}
+      </h1>
+      <p class="mt-2 font-clashDisplayRegular">
+        Top 4 tournaments have been selected especially for you
+      </p>
+    </header>
+    <div class="grid grid-cols-2 gap-6 mt-6">
+      <mat-card *ngFor="let tournament of tournaments" class="card-border shadow-animation cursor-pointer"
+                [routerLink]="'/tournaments/' + tournament.id">
+        <mat-card-content matRipple>
+          <div class="flex justify-between w-full mb-2">
+            <div>{{tournament.name}}</div>
+            <div>{{tournament.prizeFund}} KZT</div>
+          </div>
+          <div class="flex items-center gap-2 mb-2">
+            <div class="flex px-2 py-1 border rounded-md">
+              <img src="{{tournament.category.img}}" loading="lazy" decoding="async" alt="" width="23"
+                   class="flex-none rounded-md pr-1.5">
+              <span class="text-sm">{{tournament.category.name}}</span>
+            </div>
+            <div class="text-sm">
+              {{tournament.startDate | date: 'MMMM d, yyyy, HH:mm'}} -
+              {{tournament.endDate | date: 'MMMM d, yyyy, HH:mm'}}
+            </div>
+          </div>
+          <div class="text-sm">
+            {{tournament.subtitle}}
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</section>
+
+<section class="mb-32 header container">
+  <div>
+    <header class="text-start">
+      <img src="assets/images/Heart.svg" alt="image1" class="mb-4">
+      <h1 class="text-5xl font-clashDisplayBold tracking-tight text-black">
+        {{'Our values' | translate | uppercase}}
+      </h1>
+      <p class="mt-2 font-clashDisplayRegular">
+        I’ve worked on tons of little projects over the years.
+      </p>
+    </header>
+    <div class="mt-4">
+      <div class="grid grid-cols-4 gap-4 text-center">
+        <div class="p-4 border-black border-[1.5px] shadow-animation rounded-lg cursor-pointer rounded-xl">
+          <h2 class="text-4xl font-clashDisplayMedium text-black">{{countUsers}}</h2>
+          <p>{{'Users' | translate}}</p>
+        </div>
+        <div class="p-4 border-black border-[1.5px] shadow-animation rounded-lg cursor-pointer rounded-xl">
+          <h2 class="text-4xl font-clashDisplayMedium text-black">{{countTournaments}}</h2>
+          <p>{{'Tournaments' | translate}}</p>
+        </div>
+        <div class="p-4 border-black border-[1.5px] shadow-animation rounded-lg cursor-pointer rounded-xl">
+          <h2 class="text-4xl font-clashDisplayMedium text-black">{{countTournaments}}</h2>
+          <p>{{'Organizations' | translate}}</p>
+        </div>
+        <div class="p-4 border-black border-[1.5px] shadow-animation rounded-lg cursor-pointer rounded-xl">
+          <h2 class="text-4xl font-clashDisplayMedium text-black">{{countPartners}}</h2>
+          <p>{{'Partners' | translate}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white container">
+  <div>
+    <header class="text-start">
+      <img src="assets/images/Peace.svg" alt="image1" class="mb-4">
+      <h1 class="text-5xl font-clashDisplayBold text-black">
+        {{'Team' | translate}}
+      </h1>
+      <p class="mt-2 font-clashDisplayRegular text-base text-zinc-600">
+        I’ve worked on tons of little projects over the years.
+      </p>
+    </header>
+    <div class="grid grid-cols-12 gap-6 mt-4">
+      <div class="col-span-3">
+        <div class="dev-card overflow-hidden shadow-animation flex justify-center">
+          <img src="/assets/images/Adilet_vector.svg" alt="Adilet" class="h-80 -mb-[35px]">
+        </div>
+        <div class="mt-2">
+          <h1 class="font-clashDisplayMedium text-2xl">Zhanysbay Adilet</h1>
+          <h3 class="font-clashDisplayRegular text-lg">@zhanysbayadilet</h3>
+        </div>
+      </div>
+      <div class="col-span-3">
+        <div class="dev-card shadow-animation flex justify-center">
+          <img src="/assets/images/Aibol_vector.svg" alt="Aibol" class="h-80 -mb-[35px]">
+        </div>
+        <div class="mt-2">
+          <h1 class="font-clashDisplayMedium text-2xl">Otar Aibol</h1>
+          <h3 class="font-clashDisplayRegular text-lg">@otaraibol</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

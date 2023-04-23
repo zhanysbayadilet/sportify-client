@@ -1,0 +1,110 @@
+.user-form-animation {
+  opacity: 0;
+  animation: ani 0.5s forwards;
+}
+
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+
+.remove-btn {
+  position: absolute;
+  cursor: pointer;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  width: 20px;
+  height: auto;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+}
+
+.mat-tab-1{
+  border: 2px solid black;
+}
+
+.card-border{
+  border: 1.5px solid #000;
+  @apply rounded-xl;
+}
+
+
+.mat-mdc-raised-button, mat-mdc-stroked-button {
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.mat-mdc-button-base {
+  border-radius: 10px;
+}
+
+.mat-mdc-table {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+::ng-deep .mdc-text-field--filled {
+  @apply border-b-0;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  @apply bg-white border-[1.5px] border-black rounded-xl -mb-2;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  @apply bg-black text-white mr-1 rounded-xl hover:bg-[#69C6AC] duration-150;
+}
+
+.shadow-animation {
+  @apply shadow-none;
+}
+
+.shadow-animation {
+  @apply hover:-translate-y-[4px] duration-300 hover:shadow-[0_4px_black];
+}
+
+.shadow-animation2 {
+  @apply bg-[#69C6AC] hover:-translate-y-[4px] duration-300 hover:shadow-[0_4px_black];
+}
+
+::ng-deep .mat-mdc-tab-header .mdc-tab {
+  border-bottom: 1px solid black;
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 20px !important;
+  padding: 10px;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  @apply bg-[#FE673B] text-white mr-1 rounded-xl hover:bg-black duration-150;
+}
+#create-button {
+  padding: 27px !important;
+}
+
+#delete-button {
+  @apply bg-[#FE673B]
+}
+
+#launch-button {
+  @apply bg-white
+}
+
+.mat-mdc-button:not(:disabled) {
+  color: var(--mdc-text-button-label-text-color, inherit);
+  padding: 10px !important;
+}
+
+.mat-mdc-button>.mat-icon {
+  margin-right: 0 !important;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  @apply bg-[#FE673B] text-white mr-1 rounded-xl hover:bg-black duration-150;
+}
+
+

@@ -1,0 +1,43 @@
+.header {
+  opacity: 0;
+  animation: ani 1s forwards;
+}
+
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.green-button {
+  @apply bg-[#69C6AC] border-[1.5px] border-black rounded-xl z-10 px-14 py-6 text-2xl text-white font-clashDisplayMedium
+}
+
+.green-button:hover {
+  box-shadow: black 10px 10px;
+}
+
+.shadow-animation {
+  @apply shadow-none hover:-translate-y-[6px] hover:-translate-x-[6px] duration-300 hover:shadow-[6px_6px_black];
+}
+
+.black-button-animation {
+  @apply hover:bg-[#fff] hover:text-[#000] border-black border-[1.5px] duration-300;
+}
+
+.lines{
+  opacity: 0;
+}
+
+.green-button:hover + .lines {
+  @apply duration-500 opacity-100;
+}
+
+.dev-card {
+  @apply border-black border-[1.5px] p-6 rounded-xl
+}
+
+.card-border{
+  border: 1.5px solid #000;
+  @apply rounded-xl;
+}
+

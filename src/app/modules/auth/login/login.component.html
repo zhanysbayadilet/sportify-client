@@ -1,0 +1,45 @@
+<section class="grid place-content-center h-full">
+  <div class="border-[1.5px] border-black rounded-full absolute top-5 left-5 shadow-xl">
+    <button type="button" mat-icon-button routerLink="">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+  </div>
+  <div class="flex min-h-full items-center justify-center py-32 px-4 -mt-10">
+    <div class="w-full max-w-md space-y-8">
+      <div>
+        <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in</h2>
+      </div>
+      <form [formGroup]="signInForm">
+        <mat-form-field class="w-full mb-3" color="accent">
+          <mat-label>Email</mat-label>
+          <input matInput id="username" [formControlName]="'username'">
+          <mat-error *ngIf="signInForm.get('username')?.hasError('required')">
+            {{ "Обязательно для заполнения" }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full mb-3" color="accent">
+          <mat-label>Password</mat-label>
+          <input [type]="hide ? 'password' : 'text'" [formControlName]="'password'" id="password" matInput>
+          <mat-error *ngIf="signInForm.get('password')?.hasError('required')">
+            {{ "Обязательно для заполнения" }}
+          </mat-error>
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <a href="#/signup" class="text-sm font-medium hover:text-[#69C6AC]">Create new account?</a>
+        <button type="submit" mat-button id="create-button"
+                class="card-border shadow-animation2 text-white" [disabled]="signInForm.invalid"
+                (click)="signIn()">
+          <span *ngIf="signInForm.enabled">
+                        Войти
+                    </span>
+          <mat-progress-spinner
+            *ngIf="signInForm.disabled"
+            [diameter]="24"
+            [mode]="'indeterminate'"></mat-progress-spinner>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

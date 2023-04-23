@@ -1,0 +1,103 @@
+<div class="mt-28">
+  <header class="flex items-center flex-col mb-2">
+    <h1 class="text-5xl font-clashDisplayMedium">
+      {{'Tournaments' | translate}}
+    </h1>
+    <p class="my-2 text-base text-zinc-600 dark:text-zinc-400">
+      Find the tournament you like using filters
+    </p>
+  </header>
+  <div class="grid grid-cols-12 container gap-4">
+    <div class="col-span-3">
+      <section>
+        <mat-form-field class="w-full" color="accent" >
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate (dateInput)="filter('from_date', $event)" placeholder="Start date">
+            <input matEndDate (dateInput)="filter('until_date', $event)" placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </section>
+      <section>
+        <mat-form-field class="w-full" color="accent">
+          <mat-label>Categories</mat-label>
+          <mat-select [formControl]="selectedCategories" multiple>
+            <mat-select-trigger>
+              {{selectedCategories.value?.[0] || ''}}
+              <span *ngIf="(selectedCategories.value?.length || 0) > 1" class="example-additional-selection">
+                (+{{(selectedCategories.value?.length || 0) - 1}} {{selectedCategories.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let category of categories" [value]="category.enName">{{category.enName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </section>
+      <section>
+        <mat-form-field class="w-full" color="accent">
+          <mat-label>Status</mat-label>
+          <mat-select [formControl]="selectedStatus" multiple>
+            <mat-option>Open</mat-option>
+            <mat-option>In progress</mat-option>
+            <mat-option>Finished</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </section>
+    </div>
+    <div class="col-span-9">
+      <section>
+        <mat-form-field class="w-full" color="accent">
+          <mat-label>Search...</mat-label>
+          <input matInput type="text" [(ngModel)]="searchText">
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="getAllTournaments()">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </section>
+      <section>
+        <mat-card *ngFor="let tournament of tournaments" class="card-border shadow-animation cursor-pointer"
+                  (click)="goToTournament(tournament?.id)">
+          <mat-card-content matRipple>
+            <div class="flex justify-between w-full mb-2">
+              <div>{{tournament.name}}</div>
+              <div>{{tournament.prizeFund}} KZT</div>
+            </div>
+            <div class="flex items-center gap-2 mb-2">
+              <div class="flex px-2 py-1 border rounded-md">
+                <img src="{{tournament.category?.img}}" loading="lazy" decoding="async" alt="" width="23"
+                     class="flex-none rounded-md pr-1.5">
+                <span class="text-sm">{{tournament.category?.enName}}</span>
+              </div>
+              <div class="text-sm">
+                {{tournament.startDate | date: 'MMMM d, yyyy, HH:mm'}} -
+                {{tournament.endDate | date: 'MMMM d, yyyy, HH:mm'}}
+              </div>
+            </div>
+            <div class="text-sm">
+              {{tournament.subtitle}}
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="tournaments?.length === 0" class="card-border shadow-none">
+          <mat-card-content>
+            <div class="flex justify-center text-gray-500">
+              {{'Sorry, we didn\'t find anything matching your request!' | translate}}
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-paginator #paginator
+                       class="text-sm card-border bg-[#FFDF7E]"
+                       (page)="handlePageEvent($event)"
+                       [length]="totalElements"
+                       [pageSize]="pageSize"
+                       [disabled]="disabled"
+                       [showFirstLastButtons]="true"
+                       [hidePageSize]="true"
+                       [pageIndex]="pageNumber"
+                       aria-label="Select page">
+        </mat-paginator>
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<mat-drawer-container class="border border-r-0 h-[100vh] w-full" autosize>
+  <mat-drawer #drawer class="py-8 px-6" mode="side" opened>
+    <div *ngFor="let item of sideItems">
+      <button mat-button class="item-button mb-2" [routerLinkActive]="'activeLink'" [routerLink]="'/admin/' + item.link">
+        <mat-icon>{{item.icon}}</mat-icon>
+        <span>{{item.name}}</span>
+      </button>
+    </div>
+  </mat-drawer>
+
+  <button mat-mini-fab color="accent" class="ml-2 mt-2" (click)="drawer.toggle(); changeIcon = !changeIcon">
+    <mat-icon>{{changeIcon ? 'menu' : 'close'}}</mat-icon>
+  </button>
+  <div class="w-full px-10">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

@@ -1,0 +1,44 @@
+<section class="relative px-4 mt-28 container">
+  <div class="mx-20">
+    <header class="flex items-center flex-col">
+      <h1 class="text-5xl font-clashDisplayMedium">
+        {{'Categories' | translate}}
+      </h1>
+      <p class="my-3 text-base text-zinc-600">
+        Select the category in which you want to search for tournaments
+      </p>
+      <div class="mt-2 relative rounded-md">
+        <svg width="20" height="20" fill="currentColor" class="absolute left-3 top-1/2 -mt-2.5 text-slate-400 pointer-events-none group-focus-within:text-blue-500">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
+        </svg>
+        <mat-form-field class="w-full" color="accent">
+          <mat-label>Search...</mat-label>
+          <input matInput type="text" [(ngModel)]="term">
+          <button matSuffix mat-icon-button aria-label="Clear">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </header>
+    <div class="grid grid-cols-3 gap-6 mt-6">
+      <div class="shadow-animation p-4 border-[1.5px] border-black rounded-xl" matRipple *ngFor="let category of categoriesArr | filterCategory:term;">
+        <a routerLink="../tournaments" [queryParams]="{category: category.enName}">
+          <div class="flex justify-items-center justify-between items-center">
+            <div>
+              <span class="relative z-10 font-clashDisplayMedium text-2xl">{{category.enName | uppercase}}</span>
+              <p class="relative z-10 mt-2 text-sm font-clashDisplayRegular text-zinc-600">
+                {{category.description}}
+              </p>
+            </div>
+            <div class="items-end">
+              <div class="z-10 flex h-14 w-14 items-center justify-center rounded-full border-[1.5px] border-black">
+                <img alt="" src="{{category.img}}" width="34" height="34" decoding="async"
+                     data-nimg="1" class="h-8 w-8" loading="lazy" style="color: transparent;">
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

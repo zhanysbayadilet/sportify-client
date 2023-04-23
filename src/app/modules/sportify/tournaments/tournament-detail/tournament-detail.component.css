@@ -1,0 +1,95 @@
+.success {
+  transform: translateX(-150%);
+  animation: ani 0.5s forwards;
+}
+
+@keyframes ani {
+  0% {transform: translateX(150%);}
+  100% {transform: translateY(0);}
+}
+
+
+::ng-deep .mat-mdc-tab-header .mdc-tab {
+  border-bottom: 1px solid black;
+}
+
+.card-border{
+  border: 1.5px solid #000;
+  @apply rounded-xl;
+}
+
+.shadow-animation {
+  @apply hover:-translate-y-[6px] hover:-translate-x-[6px] duration-300 hover:shadow-[6px_6px_black];
+}
+
+.mat-mdc-raised-button, mat-mdc-stroked-button {
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.mat-mdc-button-base {
+  border-radius: 10px;
+}
+
+.mat-mdc-table {
+  padding: 10px;
+}
+
+::ng-deep .mdc-text-field--filled{
+  @apply border-b-0;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  @apply bg-white border-[1.5px] border-black rounded-xl -mb-2;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  @apply bg-black text-white mr-1 rounded-xl hover:bg-[#69C6AC] duration-150;
+}
+
+.box-col {
+  @apply col-span-2 grid gap-4 items-center relative;
+}
+
+.box-card {
+  @apply border-[1.5px] rounded-xl border-black px-6 py-[15px] row-span-1 text-center;
+}
+
+mat-card {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+::ng-deep .mdc-text-field--filled {
+  @apply border-b-0;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  @apply bg-white border-[1.5px] border-black rounded-xl -mb-2;
+}
+
+::ng-deep .mat-datepicker-content {
+  margin-top: 10px;
+  border: 1.5px solid;
+  border-radius: 20px !important;
+  padding-bottom: 10px;
+}
+
+::ng-deep .mdc-menu-surface--open {
+  margin-top: 10px !important;
+  border: 1.5px solid !important;
+  border-radius: 20px !important;
+}
+
+::ng-deep .mdc-text-field--filled {
+  margin-bottom: -22px;
+  @apply border-b-0;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  @apply bg-[#FE673B] text-white mr-1 rounded-xl hover:bg-black duration-150;
+}
+
+.mat-mdc-button:not(:disabled) {
+  color: var(--mdc-text-button-label-text-color, inherit);
+}

@@ -1,0 +1,77 @@
+<div class="w-full">
+  <div class="overflow-x-auto">
+    <section class="flex gap-2 my-2">
+      <mat-form-field class="w-full" color="accent">
+        <mat-label>Search...</mat-label>
+        <input matInput type="text" [(ngModel)]="searchText">
+        <button matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </section>
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z w-full card-border">
+      <!-- Position Column -->
+      <ng-container matColumnDef="index">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index;"> {{i + 1}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+      <!-- name Column -->
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+      </ng-container>
+
+      <!-- description Column -->
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      </ng-container>
+
+      <!-- img Column -->
+      <ng-container matColumnDef="roles">
+        <mat-header-cell *matHeaderCellDef> Roles </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span *ngFor="let role of element.roles; let last = last">{{role.name}}{{last ? '' : ', '}} </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <ng-template matNoDataRow>
+        <td class="flex justify-center pt-3 pb-1" [attr.colspan]="displayedColumns.length">
+          No data available!
+        </td>
+      </ng-template>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator #paginator
+                   class="text-sm card-border mt-2 bg-[#FFDF7E]"
+                   (page)="handlePageEvent($event)"
+                   [length]="length"
+                   [pageSize]="pageSize"
+                   [disabled]="disabled"
+                   [showFirstLastButtons]="true"
+                   [hidePageSize]="true"
+                   [pageIndex]="pageIndex"
+                   aria-label="Select page">
+    </mat-paginator>
+  </div>
+</div>

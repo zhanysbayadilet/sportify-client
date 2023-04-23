@@ -1,0 +1,28 @@
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  border: 1.5px solid;
+  border-radius: 15px;
+}
+
+.card-border{
+  border: 1.5px solid #000;
+  @apply rounded-xl;
+}
+
+.shadow-animation2 {
+  @apply bg-[#69C6AC] hover:-translate-y-[4px] duration-300 hover:shadow-[0_4px_black];
+}
+
+.mat-mdc-button:not(:disabled) {
+  color: var(--mdc-text-button-label-text-color, inherit);
+}
+
+#create-button {
+  width: 100%;
+  padding: 23px;
+}
+
+::ng-deep .mdc-text-field--filled {
+  margin-bottom: -19px;
+  @apply border-b-0;
+}
+

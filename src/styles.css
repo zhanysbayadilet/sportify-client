@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap"); /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+@font-face {
+  font-family: "clash-display-regular";
+  src: url("src/assets/fonts/ClashDisplay/ClashDisplay-Regular.otf");
+}
+
+@font-face {
+  font-family: "clash-display-bold";
+  src: url("src/assets/fonts/ClashDisplay/ClashDisplay-Bold.otf");
+}
+
+@font-face {
+  font-family: "clash-display-medium";
+  src: url("src/assets/fonts/ClashDisplay/ClashDisplay-Medium.otf");
+}

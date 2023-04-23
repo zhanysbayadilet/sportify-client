@@ -1,0 +1,33 @@
+<section class="container grid md:grid-cols-12 sm:grid-cols-6 gap-4 py-6">
+  <div class="col-span-6 md:flex md:justify-start">
+    <div>
+      <a [routerLink]="'main'" class="-m-1.5 p-1.5 flex items-center font-bold font-clashDisplayBold text-3xl">
+        <span class="logoSpan2 text-[#69C6AC]">SPORTIFY</span>
+      </a>
+    </div>
+  </div>
+  <div class="col-span-6 md:flex md:justify-end">
+    <div>
+      <div class="col-span-8 links text-gray-300 text-3xl font-clashDisplayBold font-bold flex justify-end gap-x-10">
+        <a [routerLinkActive]="'activeLink'" [routerLink]="'categories'">{{'Categories'}}</a>
+        <a [routerLinkActive]="'activeLink'" [routerLink]="'tournaments'">{{'Tournaments'}}</a>
+        <a [routerLinkActive]="'activeLink'" *ngIf="!isLoggedIn" [routerLink]="'/login'">{{'Login'}}</a>
+        <button mat-button [matMenuTriggerFor]="menu" *ngIf="isLoggedIn" >{{currentUser?.name}}</button>
+        <mat-menu #menu="matMenu" xPosition="before" class="mat-elevation-z2">
+          <button mat-menu-item [routerLink]="'profile'">
+            <mat-icon>person</mat-icon>
+            <span>{{'Profile'}}</span>
+          </button>
+          <button mat-menu-item [routerLink]="'admin'">
+            <mat-icon>security</mat-icon>
+            <span>{{'Admin'}}</span>
+          </button>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>{{'Logout'}}</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</section>

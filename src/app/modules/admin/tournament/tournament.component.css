@@ -1,0 +1,53 @@
+.form-tournament {
+  opacity: 0;
+  animation: ani 0.5s forwards;
+}
+
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+.card-border{
+  border: 1.5px solid #000;
+  @apply rounded-xl;
+}
+
+.mat-mdc-table {
+  padding: 10px;
+}
+
+.shadow-animation2 {
+  @apply bg-[#69C6AC] hover:-translate-y-[4px] duration-300 hover:shadow-[0_4px_black];
+}
+
+.shadow-animation3 {
+  @apply bg-white hover:-translate-y-[4px] duration-300 hover:shadow-[0_4px_black];
+}
+
+::ng-deep .mdc-text-field--filled {
+  margin-bottom: -22px;
+  @apply border-b-0;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  @apply bg-white border-[1.5px] border-black rounded-xl;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  @apply bg-[#FE673B] text-white mr-1 rounded-xl hover:bg-black duration-150;
+}
+
+.mat-mdc-button:not(:disabled) {
+  color: var(--mdc-text-button-label-text-color, inherit);
+}
+
+#create-button {
+  padding: 28px;
+}
+
+/*dialog*/
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: 20px !important;
+  padding: 10px;
+}

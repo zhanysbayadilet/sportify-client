@@ -1,0 +1,152 @@
+<div *ngIf="currentUser; else loggedOut" class="container">
+  <div class="grid gap-2 grid-cols-12 mt-10">
+    <div class="col-span-6">
+      <div class="grid grid-cols-6 px-5 py-5 card-border items-center">
+        <div class="col-span-1">
+          <div class="w-20 h-20 rounded-full ring-4 ring-gray-200 flex justify-center items-center">
+            <span class="text-4xl font-bold tracking-tight text-black">{{currentUser?.name?.charAt(0)?.toUpperCase()}}</span>
+          </div>
+        </div>
+        <div class="col-span-4">
+          <h3 class="text-lg capitalize font-bold tracking-tight text-black">{{currentUser.name}}</h3>
+          <a class="text-sm text-[#69C6AC]">{{currentUser.email}}</a>
+          <h3 class="text-sm">Almaty</h3>
+        </div>
+        <div class="col-span-1 flex pr-6 justify-end items-center">
+          <button type="button" (click)="showEditUserFrom()">
+            <img src="/assets/icons/user.svg" alt="user-edit">
+          </button>
+        </div>
+      </div>
+      <div class="col-span-6 mt-2">
+      </div>
+    </div>
+    <div class="col-span-6">
+      <div class="px-10 pb-5 pt-4 card-border">
+        <h1 class="text-3xl font-bold tracking-tight text-black">
+          Friends
+        </h1>
+      </div>
+    </div>
+
+    <div class="col-span-6">
+      <mat-tab-group color="accent" animationDuration="0ms">
+        <mat-tab label="Tournaments" class="mat-tab-1">
+          <div class="col-span-6">
+            <section>
+              <mat-card *ngFor="let tournament of tournaments" class="my-2 card-border shadow-animation cursor-pointer"
+                        (click)="goToTournament(tournament?.id)">
+                <mat-card-content>
+                  <div matRipple class="flex justify-between w-full mb-2">
+                    <div>{{tournament?.name}}</div>
+                    <div>{{tournament?.prizeFund}} KZT</div>
+                  </div>
+                  <div class="flex items-center gap-2 mb-2">
+                    <div class="flex px-2 py-1 border rounded-md">
+                      <img src="{{tournament?.category?.img}}" loading="lazy" decoding="async" alt="" width="23"
+                           class="flex-none rounded-md pr-1.5">
+                      <span class="text-sm">{{tournament?.category?.enName}}</span>
+                    </div>
+                    <div class="text-sm">
+                      {{tournament?.startDate | date: 'MMMM d, yyyy, HH:mm'}} -
+                      {{tournament?.endDate | date: 'MMMM d, yyyy, HH:mm'}}
+                    </div>
+                  </div>
+                  <div class="text-sm">
+                    {{tournament?.subtitle}}
+                  </div>
+                </mat-card-content>
+              </mat-card>
+              <mat-card *ngIf="tournaments?.length === 0" class="card-border shadow-none my-2">
+                <mat-card-content>
+                  <div class="flex justify-center text-gray-500">
+                    {{'You do not participate in tournaments!' | translate}}
+                  </div>
+                </mat-card-content>
+              </mat-card>
+              <section class="flex gap-2">
+                <mat-paginator #paginator
+                               class="text-sm card-border w-full bg-[#FFDF7E]"
+                               (page)="handlePageEvent($event)"
+                               [length]="length"
+                               [pageSize]="pageSize"
+                               [disabled]="false"
+                               [showFirstLastButtons]="true"
+                               [hidePageSize]="true"
+                               [pageIndex]="pageIndex"
+                               aria-label="Select page">
+                </mat-paginator>
+              </section>
+            </section>
+          </div>
+        </mat-tab>
+        <mat-tab label="My tournaments">
+          <div class="col-span-6">
+            <section>
+              <mat-card *ngFor="let tournament of myTournaments" class="my-2 card-border shadow-animation cursor-pointer">
+                <mat-card-content>
+                  <div class="flex justify-between">
+                    <div>
+                      <div class="mb-2">{{tournament?.name}}</div>
+                      <div class="flex items-center gap-2 mb-2">
+                        <div class="flex px-2 py-1 border rounded-md">
+                          <img src="{{tournament?.category?.img}}" loading="lazy" decoding="async" alt="" width="23"
+                               class="flex-none rounded-md pr-1.5">
+                          <span class="text-sm">{{tournament?.category?.enName}}</span>
+                        </div>
+                        <div class="text-sm">
+                          {{tournament?.startDate | date: 'MMMM d, yyyy, HH:mm'}} -
+                          {{tournament?.endDate | date: 'MMMM d, yyyy, HH:mm'}}
+                        </div>
+                      </div>
+                      <div class="text-sm">{{tournament?.subtitle}}</div>
+                    </div>
+                    <div class="flex flex-col justify-between">
+                      <div class="text-end">{{tournament?.prizeFund}} KZT</div>
+                      <div>
+                        <button mat-button (click)="goToTournament(tournament?.id)" id="launch-button"
+                                class="card-border shadow-animation2 mr-2 text-white">
+                          <mat-icon class="text-black">launch</mat-icon></button>
+                        <button mat-button (click)="openEditDialog(tournament)"
+                                class="card-border shadow-animation2 mr-2 text-white"><mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-button (click)="deleteTournament(tournament?.id)" id="delete-button"
+                                class="card-border shadow-animation2 text-white"><mat-icon>delete</mat-icon></button>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+              <mat-card *ngIf="myTournaments?.length === 0" class="card-border my-2 shadow-none">
+                <mat-card-content>
+                  <div class="flex justify-center text-gray-500">
+                    {{'You have not created tournaments!' | translate}}
+                  </div>
+                </mat-card-content>
+              </mat-card>
+              <section class="flex gap-2">
+                <button mat-button (click)="openDialog()" id="create-button"
+                        class="card-border shadow-animation2 text-white">Create</button>
+                <mat-paginator #paginator
+                               class="text-sm card-border w-full bg-[#FFDF7E]"
+                               (page)="handlePageEvent1($event)"
+                               [length]="length1"
+                               [pageSize]="pageSize1"
+                               [disabled]="false"
+                               [showFirstLastButtons]="true"
+                               [hidePageSize]="true"
+                               [pageIndex]="pageIndex1"
+                               aria-label="Select page">
+                </mat-paginator>
+              </section>
+            </section>
+          </div>
+        </mat-tab>
+        <mat-tab label="Team" class="mat-tab-1"></mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
+<ng-template #loggedOut>
+  Please login.
+</ng-template>
