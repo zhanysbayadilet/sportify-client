@@ -8,7 +8,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import {ExtraOptions, PreloadAllModules, RouterModule, RouterOutlet} from "@angular/router";
 import {appRoutes} from "./app-routing";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
@@ -18,6 +18,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
 import {MatIconModule} from "@angular/material/icon";
+import {HttpInterceptorService} from "./core/service/http-interceptor.service";
 
 const routerConfig: ExtraOptions = {
   preloadingStrategy       : PreloadAllModules,
@@ -59,6 +60,11 @@ export function createTranslateLoader(http: HttpClient): any {
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     {provide: MAT_DATE_LOCALE, useValue: 'RU'},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    },
     DatePipe
   ],
   bootstrap: [AppComponent]
