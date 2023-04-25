@@ -82,11 +82,11 @@
 .mat-mdc-icon-button.mat-mdc-button-base {
   @apply bg-[#FE673B] text-white mr-1 rounded-xl hover:bg-black duration-150;
 }
-#create-button {
+#create-button, #create-button2 {
   padding: 27px !important;
 }
 
-#delete-button {
+#delete-button, #delete-button2 {
   @apply bg-[#FE673B]
 }
 

@@ -11,36 +11,43 @@ import {MatButtonModule} from "@angular/material/button";
 import {TranslateModule} from "@ngx-translate/core";
 import {MatDialogModule} from "@angular/material/dialog";
 import { TournamentFormDialogComponent } from './tournament-form-dialog/tournament-form-dialog.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {AngularEditorModule} from "@kolkov/angular-editor";
+import { TeamFormDialogComponent } from './team-form-dialog/team-form-dialog.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
   declarations: [
     ProfileComponent,
-    TournamentFormDialogComponent
+    TournamentFormDialogComponent,
+    TeamFormDialogComponent
   ],
-  imports: [
-    CommonModule,
-    ProfileRoutingModule,
-    MatTabsModule,
-    MatCardModule,
-    MatRippleModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    TranslateModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatIconModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    AngularEditorModule,
-    MatNativeDateModule
-  ]
+    imports: [
+        CommonModule,
+        ProfileRoutingModule,
+        MatTabsModule,
+        MatCardModule,
+        MatRippleModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        TranslateModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatIconModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        AngularEditorModule,
+        MatNativeDateModule,
+        MatAutocompleteModule,
+        FormsModule,
+        MatTableModule
+    ]
 })
 export class ProfileModule { }

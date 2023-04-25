@@ -107,7 +107,7 @@
                         <button mat-button (click)="goToTournament(tournament?.id)" id="launch-button"
                                 class="card-border shadow-animation2 mr-2 text-white">
                           <mat-icon class="text-black">launch</mat-icon></button>
-                        <button mat-button (click)="openEditDialog(tournament)"
+                        <button mat-button (click)="openTeamDialog(team)"
                                 class="card-border shadow-animation2 mr-2 text-white"><mat-icon>edit</mat-icon>
                         </button>
                         <button mat-button (click)="deleteTournament(tournament?.id)" id="delete-button"
@@ -142,7 +142,53 @@
             </section>
           </div>
         </mat-tab>
-        <mat-tab label="Team" class="mat-tab-1"></mat-tab>
+        <mat-tab label="Team" class="mat-tab-1">
+          <div class="col-span-6">
+            <section>
+              <mat-card *ngFor="let team of myTeams" class="my-2 card-border shadow-animation cursor-pointer">
+                <mat-card-content>
+                  <div class="flex justify-between">
+                    <div>
+                      <div class="mb-2">{{team?.name}}</div>
+                      <div class="text-sm">Members: {{team?.members?.length}}</div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <div>
+                        <button mat-button (click)="openTeamDialog(team)"
+                                class="card-border shadow-animation2 mr-2 text-white"><mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-button (click)="deleteTeam(team?.id)" id="delete-button2"
+                                class="card-border shadow-animation2 text-white"><mat-icon>delete</mat-icon></button>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+              <mat-card *ngIf="myTournaments?.length === 0" class="card-border my-2 shadow-none">
+                <mat-card-content>
+                  <div class="flex justify-center text-gray-500">
+                    {{'You have not created tournaments!' | translate}}
+                  </div>
+                </mat-card-content>
+              </mat-card>
+              <section class="flex gap-2">
+                <button mat-button (click)="openTeamDialog()" id="create-button2"
+                        class="card-border shadow-animation2 text-white">Create</button>
+                <mat-paginator #paginator
+                               class="text-sm card-border w-full bg-[#FFDF7E]"
+                               (page)="handlePageEvent1($event)"
+                               [length]="length2"
+                               [pageSize]="pageSize2"
+                               [disabled]="false"
+                               [showFirstLastButtons]="true"
+                               [hidePageSize]="true"
+                               [pageIndex]="pageIndex2"
+                               aria-label="Select page">
+                </mat-paginator>
+              </section>
+            </section>
+          </div>
+        </mat-tab>
       </mat-tab-group>
     </div>
   </div>

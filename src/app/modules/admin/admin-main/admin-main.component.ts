@@ -34,7 +34,7 @@ export class AdminMainComponent implements OnInit{
       icon: 'people'
     }
   ];
-  changeIcon: boolean = true;
+  changeIcon: boolean = false;
 
   ngOnInit(): void {
 

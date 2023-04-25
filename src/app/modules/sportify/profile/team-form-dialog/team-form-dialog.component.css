@@ -1,0 +1,14 @@
+.mat-mdc-form-field-error {
+  margin-top: 8px;
+}
+
+button i {
+  font-family: FontAwesome, serif !important;
+  color: #474d6d !important;
+}
+
+.card-border{
+  border: 1.5px solid #000;
+  padding: 10px;
+  @apply rounded-xl;
+}

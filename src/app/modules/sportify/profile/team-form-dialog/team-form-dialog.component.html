@@ -1,0 +1,86 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content class="overflow-y-scroll">
+  <form [formGroup]="formGroup" #signInNgForm="ngForm">
+    <mat-form-field class="w-full mb-3" color="accent">
+      <mat-label>Name</mat-label>
+      <input [ngModel]="team.name" [formControlName]="'name'" id="name" matInput>
+      <mat-error *ngIf="formGroup.get('name')?.hasError('required')">
+        {{ "Обязательно для заполнения" }}
+      </mat-error>
+      <mat-error *ngIf="formGroup.get('name')?.hasError('maxlength')">
+        {{ "Максимальная длина 30 символов" }}
+      </mat-error>
+      <button *ngIf="formGroup.get('name')" matSuffix mat-icon-button aria-label="Clear"
+              (click)="formGroup.get('name')?.setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field color="accent" class="mb-3 w-full">
+      <mat-label>Category</mat-label>
+      <mat-select [ngModel]="team.categoryId" [formControlName]="'categoryId'">
+        <mat-option *ngFor="let category of categories" [value]="category.id">{{category.enName}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="formGroup.get('categoryId')?.hasError('required')">
+        {{ "Обязательно для заполнения" }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Member username</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Number"
+             matInput [(ngModel)]="searchUser"
+             [matAutocomplete]="auto" (change)="getUserByUsername()">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="addMember($event)">
+        <mat-option *ngFor="let user of users" [value]="user">
+          {{user.username}}
+        </mat-option>
+      </mat-autocomplete>
+      <button *ngIf="searchUser" matSuffix mat-icon-button (click)="searchUser = ''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button *ngIf="searchUser" matSuffix mat-icon-button (click)="getUserByUsername()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+
+  <mat-table *ngIf="selectedMembers?.length !== 0" [dataSource]="dataSource" class="mat-elevation-z0">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- email Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button matSuffix mat-icon-button (click)="deleteMember(element)">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{'Cancel' | translate}}</button>
+  <button mat-button (click)="saveTeam()">{{data.action | translate}}</button>
+</div>

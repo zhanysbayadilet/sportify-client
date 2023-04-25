@@ -102,4 +102,7 @@ export class UserService {
     return this._httpClient.get<any>(`${this.ADMINISTRATION_URL}/myTournaments${this.requestConstructor(params)}`);
   }
 
+  getUserByUsername(param: any): Observable<User[]> {
+    return this._httpClient.get<any>(`${this.ADMINISTRATION_URL}/filter${this.requestConstructor(param)}`)
+  }
 }

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Tournament} from "../../../../core/model/tournament";
 import {Category} from "../../../../core/model/category";
 import {User} from "../../../../core/model/user";
-import {MatSnackBar, MatSnackBarHorizontalPosition} from "@angular/material/snack-bar";
+import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatTableDataSource} from "@angular/material/table";
 import {PageEvent} from "@angular/material/paginator";
 import {City} from "../../../../core/model/city";

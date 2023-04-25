@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../../core/model/user";
 import {Tournament} from "../../../core/model/tournament";
 import {Category} from "../../../core/model/category";
@@ -10,6 +10,9 @@ import {CategoryService} from "../../../core/service/category.service";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 import {TournamentFormDialogComponent} from "./tournament-form-dialog/tournament-form-dialog.component";
+import {TeamService} from "../../../core/service/team.service";
+import {Team} from "../../../core/model/team";
+import {TeamFormDialogComponent} from "./team-form-dialog/team-form-dialog.component";
 
 @Component({
   selector: 'app-profile',
@@ -26,18 +29,24 @@ export class ProfileComponent implements OnInit{
   showEditUser = false;
   length = 0;
   length1 = 0
+  length2 = 0
   pageSize = 5;
   pageSize1 = 5;
+  pageSize2 = 5;
   pageIndex = 0;
   pageIndex1 = 0;
+  pageIndex2 = 0;
   pageEvent?: PageEvent;
   pageEvent1?: PageEvent;
+  pageEvent2?: PageEvent;
   private params: any;
+  myTeams: Team[] = [];
 
   constructor(private token: TokenStorageService,
               private userService: UserService,
               private tournamentService: TournamentService,
               private categoryService: CategoryService,
+              private teamService: TeamService,
               public dialog: MatDialog,
               public router: Router) { }
 
@@ -50,6 +59,7 @@ export class ProfileComponent implements OnInit{
     this.getUserTournaments();
     this.getMyTournaments();
     this.getAllCategories();
+    this.getAllTeam();
   }
 
   private getAllCategories(){
@@ -122,6 +132,29 @@ export class ProfileComponent implements OnInit{
       this.getUserTournaments();
     });
   }
+  @Input() team?: Team;
+  openTeamDialog(team: any = null): void {
+    let action = 'Create';
+    let title = 'Create team';
+    if (team != null) {
+      action = 'Edit'
+      title = 'Edit team'
+    }
+    const dialogRef = this.dialog.open(TeamFormDialogComponent, {
+      data: {
+        title: title,
+        action: action,
+        team: team
+      },
+      minWidth: '700px',
+      panelClass: 'custom'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getMyTournaments();
+      this.getUserTournaments();
+    });
+  }
 
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
@@ -150,5 +183,26 @@ export class ProfileComponent implements OnInit{
         this.getUserTournaments();
       }
     })
+  }
+
+  getAllTeam() {
+    this.params = null;
+    this.params = {
+      pageNumber: this.pageIndex2,
+      pageSize: this.pageSize2,
+      adminId: this.currentUserInToken.id
+    }
+    this.teamService.getTeams(this.params).subscribe(res => {
+      this.myTeams = res.items;
+      this.length2 = res.total;
+    });
+  }
+
+  deleteTeam(id: any) {
+    this.teamService.deleteTeam(id).subscribe(res => {
+      if (res) {
+        this.getAllTeam();
+      }
+    });
   }
 }
