@@ -5,7 +5,8 @@ import {catchError, Observable, of, switchMap, throwError} from "rxjs";
 import {UserService} from "../service/user.service";
 import {AuthUtils} from "./auth.utils";
 
-const AUTH_API = 'http://localhost:8081/sportify/api/auth/';
+// const AUTH_API = 'http://178.128.41.200:8081/sportify/api/auth/';
+const AUTH_API = 'http://178.128.41.200:8081/sportify/api/auth/';
 
 @Injectable()
 export class AuthService {
@@ -28,7 +29,7 @@ export class AuthService {
     });
   }
 
-  signIn(loginRequest: any): Observable<any> {;
+  signIn(loginRequest: any): Observable<any> {
     // Throw error, if the user is already logged in
     if ( this._authenticated ) {
       return throwError('User is already logged in.');

@@ -64,7 +64,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {},
+          "options": {
+            "proxyConfig": "./proxy.config.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "sportify-client:build:production"
