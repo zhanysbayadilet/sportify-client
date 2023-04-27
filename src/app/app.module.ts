@@ -60,11 +60,7 @@ export function createTranslateLoader(http: HttpClient): any {
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     {provide: MAT_DATE_LOCALE, useValue: 'RU'},
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
-      multi: true
-    },
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true},
     DatePipe
   ],
   bootstrap: [AppComponent]

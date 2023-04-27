@@ -4,13 +4,12 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {catchError, Observable, of, switchMap, throwError} from "rxjs";
 import {UserService} from "../service/user.service";
 import {AuthUtils} from "./auth.utils";
-
-// const AUTH_API = 'http://178.128.41.200:8081/sportify/api/auth/';
-const AUTH_API = 'http://178.128.41.200:8081/sportify/api/auth/';
+import {ServiceCommonConstants} from "../constants/service-common.constants";
 
 @Injectable()
 export class AuthService {
   private _authenticated: boolean = false;
+  private readonly apiUrl = ServiceCommonConstants.AUTH_URL
   constructor(private _httpClient: HttpClient,
               private _userService: UserService,
               private _snackBar: MatSnackBar) { }
@@ -35,7 +34,7 @@ export class AuthService {
       return throwError('User is already logged in.');
     }
 
-    return this._httpClient.post(AUTH_API + 'signin', loginRequest).pipe(
+    return this._httpClient.post(this.apiUrl + '/signin', loginRequest).pipe(
       switchMap((response: any) => {
 
         // Store the access token in the local storage
@@ -67,7 +66,7 @@ export class AuthService {
 
   signInUsingToken(): Observable<any> {
     // Sign in using the token
-    return this._httpClient.post(AUTH_API + 'sign-in-with-token', {
+    return this._httpClient.post(this.apiUrl + '/sign-in-with-token', {
       accessToken: this.accessToken
     }).pipe(
       catchError(() =>
@@ -139,7 +138,7 @@ export class AuthService {
   }
 
   signUp(signUpForm: any): Observable<any> {
-    return this._httpClient.post(AUTH_API + 'signup', signUpForm);
+    return this._httpClient.post(this.apiUrl + '/signup', signUpForm);
   }
 
 
